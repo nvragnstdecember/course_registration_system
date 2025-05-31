@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Course</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        Add New Course
+    </header>
+
+    <div class="container">
+        <form action="/add_course" method="post">
+            <input type="text" name="course_name" placeholder="Course Name" required>
+            <input type="text" name="course_description" placeholder="Course Description" required>
+            <select name="instructor_id" required>
+                {% for instructor in instructors %}
+                    <option value="{{ instructor[0] }}">
+                        {{ instructor[1] }} ({{ instructor[2] }})  <!-- name (department) -->
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Add Course</button>
+        </form>
+    </div>
+
+    <nav>
+        <a href="/">Back to Home</a>
+    </nav>
+</body>
+</html>
